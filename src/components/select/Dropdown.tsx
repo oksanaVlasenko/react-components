@@ -258,7 +258,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                 <FaceFrownIcon className='not-found-icon'/>
 
                 <p className='not-found-text'>
-                  {notFoundText}
+                  {notFoundText} 
                 </p>
               </div>
             )

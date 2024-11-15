@@ -71,6 +71,40 @@ The Dropdown component is a flexible and customizable dropdown menu that allows 
  - Type: `() => void`
 Description: Callback function triggered when the "clear" button (X icon) is clicked to clear the selected value.
 
+## Example Usage
+
+### Basic Usage
+
+```javascript
+import React, { useState } from 'react';
+import Dropdown from './Dropdown';
+
+const App: React.FC = () => {
+  const [selectedValue, setSelectedValue] = useState<string | number | null>(null);
+
+  const options = [
+    { id: 1, label: 'Option 1', icon: '<svg>...</svg>' },
+    { id: 2, label: 'Option 2', icon: '<svg>...</svg>' },
+    { id: 3, label: 'Option 3', disabled: true },
+  ];
+
+  const handleSelectChange = (newValue: string | number | null) => {
+    setSelectedValue(newValue);
+  };
+
+  return (
+    <Dropdown
+      selectedValue={selectedValue}
+      options={options}
+      onSelectChange={handleSelectChange}
+      size="medium"
+    />
+  );
+};
+
+export default App;
+
+
 ## Styles
 The component uses an external SCSS file for styling. You can modify the Dropdown.scss file to fit your design requirements. The component supports custom sizes (small, medium, large), and you can customize the layout and colors via CSS.
 

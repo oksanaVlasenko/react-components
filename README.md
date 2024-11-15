@@ -92,10 +92,10 @@ const App: React.FC = () => {
 
   return (
     <Dropdown
+      size="small"
       selectedValue={selectedValue}
       options={options}
       onSelectChange={handleSelectChange}
-      size="small"
     />
   );
 };

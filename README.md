@@ -1,5 +1,3 @@
-# React + TypeScript + Vite
-
 # Dropdown Component
 
 The Dropdown component is a flexible and customizable dropdown menu that allows users to select an option from a list of available choices. It supports search functionality, error text, custom sizes, and icon rendering within the dropdown options. This component is designed to work seamlessly with React and TypeScript, and it includes a variety of optional features such as clearing the selected value and handling click events outside the dropdown.

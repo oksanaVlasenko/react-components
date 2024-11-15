@@ -95,7 +95,7 @@ const App: React.FC = () => {
       selectedValue={selectedValue}
       options={options}
       onSelectChange={handleSelectChange}
-      size="medium"
+      size="small"
     />
   );
 };

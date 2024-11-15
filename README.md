@@ -103,7 +103,7 @@ const App: React.FC = () => {
 };
 
 export default App;
-
+```
 
 ## Styles
 The component uses an external SCSS file for styling. You can modify the Dropdown.scss file to fit your design requirements. The component supports custom sizes (small, medium, large), and you can customize the layout and colors via CSS.

@@ -1,7 +1,8 @@
 
 import { useState } from 'react'
-import Dropdown from './components/select/Dropdown.js'
-import './App.css'
+import { DropdownProvider } from '@/context/dropdownContext';
+import Dropdown from '@/components/select/Dropdown.js'
+import '@/App.css'
 
 
 function App() {
@@ -15,8 +16,12 @@ function App() {
 
   const handleCloseList = () => {}
 
-  const handleClearValue = () => {
-    console.log('clear value')
+  const handleClearValue = () => {}
+
+  const setRandomSelected = () => {
+    const random = Math.floor(Math.random() * 20) + 1;
+
+    setSelectedValue(random)
   }
   
   const options = [
@@ -125,19 +130,33 @@ function App() {
     }
   ]  
 
+  const dropdownProps = {
+    selectedValue,
+    label: 'Select an option', 
+    options,
+    size: 'medium', 
+    onSelectChange: handleSelectChange,
+    onOpenList: handleOpenList,
+    onCloseList: handleCloseList,
+    onClearValue: handleClearValue,
+  };
+
   return (
     <>
-      <h1>React Components</h1>
+      <h1 className='text-2xl'>React Components</h1>
 
-      <Dropdown 
-        selectedValue={selectedValue}
-        size='large'
-        options={options}
-        onSelectChange={handleSelectChange}
-        onOpenList={handleOpenList}
-        onCloseList={handleCloseList}
-        onClearValue={handleClearValue}
-      />
+      <div className="flex items-center justify-center my-4">
+        <button 
+          onClick={setRandomSelected}
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Click Me For Change Select
+        </button>
+      </div>
+
+      <DropdownProvider value={dropdownProps}>
+        <Dropdown />
+      </DropdownProvider>
     </>
   )
 }

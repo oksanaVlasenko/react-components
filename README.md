@@ -1,6 +1,6 @@
 # Dropdown Component
 
-The Dropdown component is a flexible and customizable dropdown menu that allows users to select an option from a list of available choices. It supports search functionality, error text, custom sizes, and icon rendering within the dropdown options. This component is designed to work seamlessly with React and TypeScript, and it includes a variety of optional features such as clearing the selected value and handling click events outside the dropdown.
+The `Dropdown` component is a flexible and customizable dropdown menu that allows users to select an option from a list of available choices. It supports search functionality, error text, custom sizes, and icon rendering within the dropdown options. This component now also uses **context** for managing the selected value, search input, and other states, making it easier to manage the dropdown's behavior across components.
 
 ## Features
  - **Customizable options**: Render a list of selectable options.
@@ -11,12 +11,14 @@ The Dropdown component is a flexible and customizable dropdown menu that allows 
  - **Clear selection**: Users can clear the selected value with a click on the "X" icon.
  - **Tooltip support**: If the selected value is too long, a tooltip will display on hover.
  - **Click outside handling**: Closes the dropdown when clicking outside of it.
+ - **Context Integration**: The component now uses React context to manage state like `selectedValue`, `searchQuery`, `disabled` and etc, making it easier to handle the dropdown's state across different components.
 
  ## Props
+ **Context-based state:**
 
 `selectedValue` **(required)**
  - Type: `string | number | null`
- - Description: The currently selected value in the dropdown.
+ - Description: The currently selected value in the dropdown. This value is now managed via context and passed down to the dropdown.
 
 `label` **(optional)**
  - Type: `string | number | null | undefined`
@@ -68,6 +70,25 @@ The Dropdown component is a flexible and customizable dropdown menu that allows 
 `onClearValue` **(optional)**
  - Type: `() => void`
 Description: Callback function triggered when the "clear" button (X icon) is clicked to clear the selected value.
+
+## Context-based State Management
+
+The dropdown now uses React Context to manage state for values like `selectedValue`, `searchQuery`, and `disabled`. The context provider should wrap the component tree where the dropdown is used. You can access or modify the context values as follows:
+
+1. **Providing Context**: In the parent component, wrap the dropdown with the `DropdownProvider` and pass the necessary state.
+
+```javascript
+<DropdownProvider value={dropdownProps}>
+  <Dropdown />
+</DropdownProvider>
+```
+
+2. **Accessing Context**: Inside the `Dropdown` component (or any child component), you can use the `useDropdownContext` hook to access the state values.
+
+```javascript
+const { selectedValue, options, disabled, onSelectChange } = useDropdownContext();
+```
+This context-based approach simplifies managing the dropdown's state across multiple components and ensures a cleaner and more modular codebase.
 
 ## Example Usage
 

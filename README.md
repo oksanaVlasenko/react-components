@@ -75,6 +75,7 @@ Description: Callback function triggered when the "clear" button (X icon) is cli
 
 ```javascript
 import React, { useState } from 'react';
+import { DropdownProvider } from '@/context/dropdownContext';
 import Dropdown from './Dropdown';
 
 const App: React.FC = () => {
@@ -90,13 +91,21 @@ const App: React.FC = () => {
     setSelectedValue(newValue);
   };
 
+  const dropdownProps = {
+    selectedValue,
+    label: 'Select an option', 
+    options,
+    size: 'medium', 
+    onSelectChange: handleSelectChange,
+    onOpenList: handleOpenList,
+    onCloseList: handleCloseList,
+    onClearValue: handleClearValue,
+  };
+
   return (
-    <Dropdown
-      size="small"
-      selectedValue={selectedValue}
-      options={options}
-      onSelectChange={handleSelectChange}
-    />
+    <DropdownProvider value={dropdownProps}>
+      <Dropdown />
+    </DropdownProvider>
   );
 };
 
